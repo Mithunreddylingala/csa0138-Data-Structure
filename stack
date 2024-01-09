@@ -1,40 +1,82 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define SIZE 4
+int top = -1, arr[SIZE];
+void push();
+void pop();
+void show();
 
-#define MAX_SIZE 3
+int main()
+{
+    int choice;
 
-typedef struct {
-    int top;
-    int stack[MAX_SIZE];
-} Stack;
+    while (1)
+    {
+        printf("\nPerform operations on the stack:");
+        printf("\n1.Push the element\n2.Pop the element\n3.Show\n4.End");
+        printf("\n\nEnter the choice: ");
+        scanf("%d", &choice);
 
-Stack create_stack() {
-    Stack stack;
-    stack.top = -1;
-    return stack;
-}
+        switch (choice)
+        {
+        case 1:
+            push();
+            break;
+        case 2:
+            pop();
+            break;
+        case 3:
+            show();
+            break;
+        case 4:
+            exit(0);
 
-int is_full(Stack stack) {
-    return stack.top == MAX_SIZE - 1;
-}
-
-void push(Stack *stack, int value) {
-    if (is_full(*stack)) {
-        printf("Stack is full. Can't push to stack.\n");
-        return;
+        default:
+            printf("\nInvalid choice!!");
+        }
     }
-    stack->top++;
-    stack->stack[stack->top] = value;
 }
 
-int main() {
-    Stack stack = create_stack();
+void push()
+{
+    int x;
 
-    push(&stack, 1);
-    push(&stack, 2);
-    push(&stack, 3);
-    printf("Stack: %d %d %d\n", stack.stack[0], stack.stack[1], stack.stack[2]);
-    push(&stack, 4);
+    if (top == SIZE - 1)
+    {
+        printf("\nOverflow!!");
+    }
+    else
+    {
+        printf("\nEnter the element to be added onto the stack: ");
+        scanf("%d", &x);
+        top = top + 1;
+        arr[top] = x;
+    }
+}
 
-    return 0;
+void pop()
+{
+    if (top == -1)
+    {
+        printf("\nUnderflow!!");
+    }
+    else
+    {
+        printf("\nPopped element: %d",arr[top]);
+        top = top - 1;
+    }
+}
+
+void show()
+{
+    if (top == -1)
+    {
+        printf("\nUnderflow!!");
+    }
+    else
+    {
+  printf("\nElements present in the stack: \n");
+        for (int i = top; i >= 0; --i)
+            printf("%d\n", arr[i]);
+    }
 }
