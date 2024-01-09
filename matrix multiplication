@@ -1,8 +1,7 @@
 #include<stdio.h>    
-#include<stdlib.h>  
-int main(){  
-int a[10][10],b[10][10],mul[10][10],r,c,i,j,k;    
-system("cls");  
+int main()
+{  
+int a[10][10],b[10][10],mul[10][10],r,c,i,j,k;      
 printf("enter the number of row=");    
 scanf("%d",&r);    
 printf("enter the number of column=");    
@@ -35,7 +34,7 @@ for(k=0;k<c;k++)
 mul[i][j]+=a[i][k]*b[k][j];    
 }    
 }    
-}   
+}       
 for(i=0;i<r;i++)    
 {    
 for(j=0;j<c;j++)    
